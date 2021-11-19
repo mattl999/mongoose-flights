@@ -1,0 +1,36 @@
+<%- include('../partials/header')%>
+
+<div class="form-container space">
+    <h1>Flight Details</h1>
+    <h2>Airline: <%= flight.airline %> </h2>
+    <h2>Airport: <%= flight.airport %> </h2>
+    <h2>Flight Number: <%= flight.flightNo %> </h2>
+    <h2>Departure Date: <%= flight.departs %> </h2>
+    <div class = 'destinations'>
+       
+        <% if (flight.destinations.length) { %>
+            <% flight.destinations.forEach(function(r) { %>
+            <h4>Destination</h4>
+                <h4>Airport</h4>
+                <td><%= r.airport %></td>
+                <h4>Arrival</h4>
+                <td><%= r.arrival %></td>
+             
+                <% }); %>
+             
+          <% } else { %>
+            <h5>No Destinations Yet</h5>
+          <% } %>
+    </div>
+    <div class='des-add-container'>
+        <h3>Add new Destination</h3>
+    <form action="/<%= flight._id %>" method="post" autocomplete="off">
+        <input class='des-add' type="text" name = "airport" placeholder="Airport"> 
+        <input class='des-add' type="text" name = "arrival" placeholder="Arrival Date">
+        <input class='des-add' type="submit">
+    </form>
+</div>
+
+</div>
+
+<%- include('../partials/footer')%>

@@ -1,0 +1,22 @@
+<%- include('../partials/header')%>
+
+<div class="form-container">
+    <div class='idx-wrapper'>
+  <h1>Flight List</h1>
+
+  
+  <% flights.forEach(function(f){ %> 
+<hr>
+   <p>Airline: <%= f.airline %></p>
+   <p>Airport: <%= f.airport %></p>
+   <p>Flight number: <%= f.flightNo %></p>
+   <p>Departure Date: <%= f.departs %></p>
+   <p id = 'ul'> <a href="/<%= f.id %>"><strong>Details</strong></a></p>
+   
+
+<% }); %>
+<hr>
+</div>
+</div>
+
+<%- include('../partials/footer')%>

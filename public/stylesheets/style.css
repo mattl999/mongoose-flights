@@ -1,0 +1,85 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: #111;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas: 
+    "nav"
+    "main"
+    
+}
+body > nav {
+  grid-area: nav;
+  background-color: #303435;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px 0 30px;
+}
+
+a {
+  color: #f3f3f3;
+  text-decoration: none;
+  font-weight: 500;
+}
+h2 {
+  color:rgb(141, 141, 141);
+}
+.form-container{
+  background-color: #222;
+  height: 80vh;
+  width:50vw;
+  display: flex;
+  flex-direction: column;
+  padding:1%;
+  border-radius: 5px;
+  border: 1px solid rgb(19, 19, 19);
+  margin:auto;
+  overflow: hidden;
+  
+}
+form {
+  display: flex;
+  flex-direction:column;
+  height: 80%;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+input {
+height: 8%;
+font-size: 21px;
+background-color: rgb(155, 155, 155);
+overflow: hidden;
+margin: 0 10%;
+}
+h1 {
+  color: #eee;
+}
+p {
+  color: rgb(180, 180, 180)
+}
+
+#ul{
+  text-decoration: underline;
+}
+.des-add{
+  height:23%;
+  display:flex;
+
+}
+.des-add-container{
+
+  height:22%;
+  display: flex;
+  
+  align-items:flex-end
+}
+.space{
+  display: flex;
+  justify-content: space-between;
+}
+.destinations{
+  
+}
