@@ -17,6 +17,10 @@ function show(req, res) {
     console.log("flighter:", flight);
     Ticket.find({}, function (err, tickets) {
       res.render("../views/flights/show", { flight });
+    //   Flight.findById(req.params.id).exec(function (err, flight) {
+    //     console.log("flighter:", flight);
+    //     Ticket.find({}, function (err, tickets) {
+    //       res.render("../views/flights/show", { flight });
     });
   });
 }
@@ -57,8 +61,8 @@ function createTicket(req, res) {
   for (let key in req.body) {
     if (req.body[key] === "") delete req.body[key];
   }
-  const ticket = new Ticket(req.body);
-  ticket.save(function(err) {
+//   const ticket = new Ticket(req.body);
+  Ticket.create(req.body, function(err) {
       if (err) return res.redirect(`/${req.params.id}/newTicket`);
       res.redirect(`/${req.params.id}`);
   });
