@@ -13,18 +13,26 @@ function newFlight(req, res) {
 }
 
 function show(req, res) {
-  Flight.findById(req.params.id).exec(function (err, flight) {
-    console.log("flighter:", flight);
-    Ticket.find({}, function (err, tickets) {
-      res.render("../views/flights/show", { flight });
+  Flight.findById(req.params.id)
+  .populate('tickets')
+  .exec(function(err,flight){
+      console.log("here")
+      Ticket.find({}, function (err, tickets){
+        //   console.log('tickets: ',tickets);
+      res.render("../views/flights/show", {flight}
+    //   , {tickets}
+      ); 
+    })
+  })
+}
     //   Flight.findById(req.params.id).exec(function (err, flight) {
     //     console.log("flighter:", flight);
     //     Ticket.find({}, function (err, tickets) {
     //       res.render("../views/flights/show", { flight });
-    });
-  });
-}
-function create(req, res) {
+//     });
+//   });
+// }
+function createFl(req, res) {
   // console.log(req.body);
   for (let key in req.body) {
     if (req.body[key] === "") delete req.body[key];
@@ -37,14 +45,9 @@ function create(req, res) {
 }
 
 function createDes(req, res) {
-  console.log("Airport: ", req.body);
   Flight.findById(req.params.id, function (err, flight) {
-    console.log(flight);
-    console.log("hit");
     flight.destinations.push(req.body);
-    console.log("flightObj; ", flight);
     flight.save(function (err) {
-      console.log("saved");
       res.redirect(`/${flight._id}`);
     });
   });
@@ -56,11 +59,10 @@ function newTicket(req, res) {
     res.render("../views/flights/newTicket", { flight });
   });
 }
+
 function createTicket(req, res) {
   console.log("createticket hit", req.body);
-  for (let key in req.body) {
-    if (req.body[key] === "") delete req.body[key];
-  }
+
 //   const ticket = new Ticket(req.body);
   Ticket.create(req.body, function(err) {
       if (err) return res.redirect(`/${req.params.id}/newTicket`);
@@ -70,7 +72,7 @@ function createTicket(req, res) {
 module.exports = {
   index,
   new: newFlight,
-  create,
+  createFl,
   show,
   createDes,
   newTicket,
