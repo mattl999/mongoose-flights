@@ -1,0 +1,11 @@
+<%- include('../partials/header')%>
+<div class='form-container'>
+    <h1>Create new Ticket</h1>
+<form action="/<%= flight._id%>/newTicket" method="post" autocomplete="off">
+        <input class='des-add' type="text" name = "seat" required pattern="[A-F][1-9]\d?" placeholder="Seat"> 
+        <input class='des-add' type="number" name = "price" placeholder="Price">
+        <input class='des-add' type="submit">
+    </form>
+</div>
+
+<%- include('../partials/footer')%>

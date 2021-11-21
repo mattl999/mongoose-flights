@@ -33,6 +33,7 @@ h2 {
   width:50vw;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   padding:1%;
   border-radius: 5px;
   border: 1px solid rgb(19, 19, 19);
