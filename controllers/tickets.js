@@ -9,5 +9,5 @@ function addTicket (req, res, next) {
 
 module.exports = 
 {
-
+addTicket
 }

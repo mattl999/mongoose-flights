@@ -1,35 +1,39 @@
 <%- include('../partials/header')%>
 
-<!-- <% if (tickets.destinations.length) { %>
-    <% tickets.forEach(function(t) { %>
-        <p>Seat: <%= t.seat %></p>
-        <p>Price: <%= t.price %></p>
 
-        <% }); %> -->
 <div class="form-container space">
     <h1>Flight Details</h1>
-    <h3>Airline: <%= flight.airline %> </h3>
-    <h3>Airport: <%= flight.airport %> </h3>
-    <h3>Flight Number: <%= flight.flightNo %> </h3>
-    <h3>Departure Date: <%= flight.departs %> </h3>
+    <p>Airline: <%= flight.airline %> </p>
+    <p>Airport: <%= flight.airport %> </p>
+    <p>Flight Number: <%= flight.flightNo %> </p>
+    <p>Departure Date: <%= flight.departs %> </p>
+    
     <div class = 'destinations'>
-       
+        <hr>
         <% if (flight.destinations.length) { %>
             <% flight.destinations.forEach(function(r) { %>
-            <h4>Destination</h4>
-                <h4>Airport</h4>
-                <td><%= r.airport %></td>
-                <h4>Arrival</h4>
-                <td><%= r.arrival %></td>
-             
+            <p>Destination:</p>
+                <p>Airport: <%= r.airport %></p>
+                <p>Arrival: <%= r.arrival %></p>
+                            
                 <% }); %>
              
           <% } else { %>
             <h5>No Destinations Yet</h5>
           <% } %>
+        <hr>
     </div>
+    <% if (flight.tickets.length) { %>
+        <% flight.tickets.forEach(function(t) { %>
+            <p>Ticket</p>
+            <p>Seat #: <%= t.seat %></p>
+            <p>price: $<%= t.price %></p>
+
+            <% }); %>
+            <% } %>
+            
     <div class='des-add-container'>
-        <h3>Add new Destination</h3>
+        <p>Add new Destination</p>
        
     <form action="/<%= flight._id %>" method="post" autocomplete="off">
         <input class='des-add' type="text" name = "airport" placeholder="Airport"> 

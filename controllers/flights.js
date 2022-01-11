@@ -16,15 +16,17 @@ function show(req, res) {
   Flight.findById(req.params.id)
   .populate('tickets')
   .exec(function(err,flight){
-      console.log("here")
-      Ticket.find({}, function (err, tickets){
-        //   console.log('tickets: ',tickets);
-      res.render("../views/flights/show", {flight}
-    //   , {tickets}
-      ); 
+      console.log("flight -->",flight)
+      // Ticket.find({}, function (err, tickets){
+          // console.log('tickets---> ',tickets);
+          
+      res.render("../views/flights/show", {flight})
+      // ,{tickets}
+    //   ); 
     })
-  })
-}
+  }
+  // )
+// }
     //   Flight.findById(req.params.id).exec(function (err, flight) {
     //     console.log("flighter:", flight);
     //     Ticket.find({}, function (err, tickets) {
@@ -62,11 +64,25 @@ function newTicket(req, res) {
 
 function createTicket(req, res) {
   console.log("createticket hit", req.body);
+  console.log("id???", req.params.id);
+
 
 //   const ticket = new Ticket(req.body);
-  Ticket.create(req.body, function(err) {
-      if (err) return res.redirect(`/${req.params.id}/newTicket`);
+  Ticket.create(req.body, function(err, ticket) {
+      if (err){ return res.redirect(`/${req.params.id}/newTicket`);
+    }else{
+      console.log("ticccccket",ticket)
+      
+      ticket.flight = req.params.id
+      ticket.save()
+      Flight.findById(req.params.id).exec(function(err, flight){
+        flight.tickets.push(ticket._id)
+        flight.save()
+        console.log(ticket)
       res.redirect(`/${req.params.id}`);
+      })
+      
+    }
   });
 }
 module.exports = {

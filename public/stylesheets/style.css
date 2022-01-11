@@ -57,9 +57,11 @@ margin: 0 10%;
 }
 h1 {
   color: #eee;
+  
 }
 p {
-  color: rgb(180, 180, 180)
+  color: rgb(180, 180, 180);
+  margin: 0;
 }
 
 #ul{
